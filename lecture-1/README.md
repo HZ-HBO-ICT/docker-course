@@ -45,7 +45,7 @@ $ pstree -p # -p (show PIDs)
 
 This hopefully makes a bit more sense. You can probably spot my browser, code editor and terminal in here. Let's take a closer look.
 
-All the way at the top is `systemd`. This is the first thing that is booted by your Linux installation. It acts as the initializer of your system. `systemd` in turns starts all kinds of other stuff: network services, authentication and a desktop environment.
+All the way at the top is `systemd` (or `init`). This is the first thing that is booted by your Linux installation. It acts as the initializer of your system. `systemd` in turns starts all kinds of other stuff: network services, authentication and a desktop environment.
 
 (Btw, if you've ever read that Arch Linux is hard, that's because you need to create your own `systemd` config. All other Linux installations just have a good default one, such as Ubuntu that I use.)
 
@@ -145,7 +145,7 @@ Open two terminals inside a folder where you can mess around freely. When there,
 $ docker run -it --rm -u 1000:1000 -v $PWD:/shared -w /shared ubuntu bash
 
 # Windows
-$ docker run -t --rm -u 1000:1000 -v ${PWD}:/shared -w /shared ubuntu bash
+$ docker run -it --rm -u 1000:1000 -v ${PWD}:/shared -w /shared ubuntu bash
 ```
 
 Let's break down that command first:
