@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+    mysql-pma-network:
+        driver: bridge
+
+# Containers are now called services for some reason
+services:
+    mysql-server:
+        image: mysql:8
+        environment:
+            MYSQL_ROOT_PASSWORD: badpassword
+            # Let's actually add a database now
+            MYSQL_DATABASE: lecture
+            MYSQL_USER: db_username
+            MYSQL_PASSWORD: db_password
+        networks:
+            - mysql-pma-network
+
+    pma:
+        # Make sure MySQL starts before PhpMyAdmin
+        depends_on:
+            - mysql-server
+        # Build the Dockerfile in the current directory
+        build: ./
+        ports:
+            - 8081:80
+        environment:
+            PMA_HOST: mysql-server
+        networks:
+            - mysql-pma-network
